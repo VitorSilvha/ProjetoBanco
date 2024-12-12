@@ -23,7 +23,7 @@
         <EditText
             android:id="@+id/editTextRemover"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="48dp"
             android:ems="10"
             android:hint="Digite o ID"
             android:inputType="number" />
