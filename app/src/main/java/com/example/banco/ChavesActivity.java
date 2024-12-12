@@ -70,6 +70,14 @@ public class ChavesActivity extends AppCompatActivity {
             // Chama o método de remoção
             repositorioPix.removerPix(id);
 
+            // Atualiza a lista de chaves Pix
+            List<Pix> chavesAtualizadas = repositorioPix.listarChaves();
+
+            // Atualiza o adaptador com a lista nova
+            ArrayAdapter<Pix> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, chavesAtualizadas);
+            ListView listView = findViewById(R.id.editListChaves);
+            listView.setAdapter(adapter);
+
             // Exibe uma mensagem de sucesso
             Toast.makeText(this, "Remoção realizada com sucesso", Toast.LENGTH_LONG).show();
 
