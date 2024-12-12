@@ -11,4 +11,3 @@ public class Pix {
         return "ID: " + id + " CPF: " + cpf + " / TEL: " + telefone + "";
     }
 }
-

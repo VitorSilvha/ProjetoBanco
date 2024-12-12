@@ -40,9 +40,6 @@ public class PixActivity extends AppCompatActivity {
         validarCPF = new ValidarCPF();
         validarTelefone = new ValidarTelefone();
 
-
-
-
     }
 
     public void CadastroPix(View view) {
@@ -90,5 +87,9 @@ public class PixActivity extends AppCompatActivity {
         Intent intent = new Intent(this, ChavesActivity.class);
         startActivity(intent);
     }
-}
 
+    public void enviarPix(View view) {
+        Intent intent = new Intent(this, EnviarPixActivity.class);
+        startActivity(intent);
+    }
+}
