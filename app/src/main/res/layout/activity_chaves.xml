@@ -17,8 +17,24 @@
         <ListView
             android:id="@+id/editListChaves"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:paddingTop="500px" />
+            android:layout_height="512dp"
+            android:paddingTop="200px"
+            android:paddingBottom="70px" />
+
+        <EditText
+            android:id="@+id/editTextRemover"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Digite o ID"
+            android:inputType="text" />
+
+        <Button
+            android:id="@+id/button2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="remover"
+            android:text="REMOVER CHAVE" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

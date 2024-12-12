@@ -27,41 +27,34 @@ public class RepositorioPix extends SQLiteOpenHelper {
     }
 
     public void adcionarChave (Pix pix){
-        String sql = "insert into pix values(null,'" + pix.getCpf() + "','" + pix.getTelefone() + "')";
+        String sql = "insert into pix values(null,'" + pix.cpf + "','" + pix.telefone + "')";
         Log.i("pix", "SQL insert pix:" + sql);
         super.getWritableDatabase().execSQL(sql);
     }
 
     @SuppressLint("Range")
     public List<Pix> listarChaves() {
-        // Lista para armazenar as chaves
-        List<Pix> listaPix = new ArrayList<>();
-
-        // Consulta SQL para pegar todos os registros da tabela "pix"
-        String sql = "SELECT * FROM pix";
-
-        // Executando a consulta
-        Cursor cursor = super.getReadableDatabase().rawQuery(sql, null);
-
-        // Verificando se a consulta retornou algum resultado
-        if (cursor != null && cursor.moveToFirst()) {
-            do {
-                // Criando um objeto Pix para cada linha retornada
-                Pix pix = new Pix();
-
-                // Obtendo os dados do cursor e setando no objeto Pix
-                pix.setId(cursor.getInt(cursor.getColumnIndex("id")));
-                pix.setCpf(cursor.getString(cursor.getColumnIndex("cpf")));
-                pix.setTelefone(cursor.getString(cursor.getColumnIndex("telefone")));
-
-                // Adicionando o objeto Pix à lista
-                listaPix.add(pix);
-            } while (cursor.moveToNext());
-
-            cursor.close();
+        ArrayList<Pix> lista = new ArrayList<Pix>();
+        String sql = "select * from pix";
+        Cursor cursor = getWritableDatabase()
+                .rawQuery(sql, null);
+        cursor.moveToFirst();
+        for (int i = 0; i < cursor.getCount(); i++) {
+            Pix pix = new Pix();
+            pix.id = cursor.getInt(0); // coluna 0
+            pix.cpf = cursor.getString(1); // coluna 1
+            pix.telefone = cursor.getString(2);// coluna 2
+            lista.add(pix);
+            cursor.moveToNext();
         }
-        // Retornando a lista de Pix
-        return listaPix;
+        cursor.close();
+        return lista;
+    }
+
+    public void removerPix(Integer id){
+        String sql = "delete from pix where id =" + id;
+        getWritableDatabase().execSQL(sql);
+        Log.i("pix","SQL delete pix: " + sql);
     }
 
     @Override

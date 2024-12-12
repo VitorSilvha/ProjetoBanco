@@ -40,6 +40,9 @@ public class PixActivity extends AppCompatActivity {
         validarCPF = new ValidarCPF();
         validarTelefone = new ValidarTelefone();
 
+
+
+
     }
 
     public void CadastroPix(View view) {
@@ -76,45 +79,16 @@ public class PixActivity extends AppCompatActivity {
 
         // adcionando os conteudos escrito no banco de dados
         Pix pix = new Pix();
-        pix.setCpf(conteudopixCpf);
-        pix.setTelefone(conteudopixTelefone);
+        pix.cpf =  conteudopixCpf;
+        pix.telefone = conteudopixTelefone;
         repositorioPix.adcionarChave(pix);
         Toast.makeText(this, "Chave pix cadastrada com sucesso", Toast.LENGTH_SHORT).show();
     }
 
 
-    public void RemoverChavePix(View view) {
-        EditText editCPF = findViewById(R.id.editTextCadastroPixCPF);
-        EditText editTelefone = findViewById(R.id.editTextCadastroPixTelefone);
-
-        // necessário validar o CPF
-        String conteudopixCpf = editCPF.getText().toString();
-
-        // necessário validar o telefone
-        String conteudopixTelefone = editTelefone.getText().toString();
-
-        // validação se foi digitado algo na caixa CPF
-        if (conteudopixCpf.isEmpty()) {
-            Toast.makeText(this, "Digite o CPF", Toast.LENGTH_SHORT).show();
-            return;
-        }
-        // validação se foi digitado algo na caixa telefone
-        if (conteudopixTelefone.isEmpty()) {
-            Toast.makeText(this, "Digite o Telefone", Toast.LENGTH_SHORT).show();
-            return;
-        }
-        Toast.makeText(this, "Chave pix removida ", Toast.LENGTH_SHORT).show();
-
-        // VINCULAR AO BANCO
-    }
-
     public void listarChaves(View view) {
         Intent intent = new Intent(this, ChavesActivity.class);
         startActivity(intent);
     }
-
-    public void enviarPix(View view) {
-        Intent intent = new Intent(this, EnviarPixActivity.class);
-        startActivity(intent);
-    }
 }
+
